@@ -35,28 +35,26 @@
         </div>
     </div>
     
-    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
     <script>
-        $(document).ready(function() {
-            var graphicInput = $('#graphicHours');
-            var audioInput = $('#audioHours');
-            var totalCostInput = $('#totalCost');
+        document.addEventListener('DOMContentLoaded', function() {
+            var graphicInput = document.getElementById('graphicHours');
+            var audioInput = document.getElementById('audioHours');
+            var totalCostInput = document.getElementById('totalCost');
             
             function calculateTotalCost() {
-                var graphicHours = parseInt(graphicInput.val());
-                var audioHours = parseInt(audioInput.val());
+                var graphicHours = parseInt(graphicInput.value);
+                var audioHours = parseInt(audioInput.value);
                 var graphicRate = 80; // PLN per hour for graphic services
                 var audioRate = 100; // PLN per hour for audio services
                 var graphicCost = graphicHours * graphicRate;
                 var audioCost = audioHours * audioRate;
                 var totalCost = graphicCost + audioCost;
-                totalCostInput.val(totalCost);
+                totalCostInput.value = totalCost;
             }
             
             // Call calculateTotalCost function when the input values change
-            graphicInput.on('input', calculateTotalCost);
-            audioInput.on('input', calculateTotalCost);
+            graphicInput.addEventListener('input', calculateTotalCost);
+            audioInput.addEventListener('input', calculateTotalCost);
         });
     </script>
 </body>
