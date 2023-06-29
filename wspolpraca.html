@@ -174,21 +174,6 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
     <title>Service Calculator</title>
-    <style>
-        body {
-            
-        }
-
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .form-group label {
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <div class='container'>
@@ -210,26 +195,28 @@
         </div>
     </div>
     
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var graphicInput = document.getElementById('graphicHours');
-            var audioInput = document.getElementById('audioHours');
-            var totalCostInput = document.getElementById('totalCost');
+        $(document).ready(function() {
+            var graphicInput = $('#graphicHours');
+            var audioInput = $('#audioHours');
+            var totalCostInput = $('#totalCost');
             
             function calculateTotalCost() {
-                var graphicHours = parseInt(graphicInput.value);
-                var audioHours = parseInt(audioInput.value);
+                var graphicHours = parseInt(graphicInput.val());
+                var audioHours = parseInt(audioInput.val());
                 var graphicRate = 80; // PLN per hour for graphic services
                 var audioRate = 100; // PLN per hour for audio services
                 var graphicCost = graphicHours * graphicRate;
                 var audioCost = audioHours * audioRate;
                 var totalCost = graphicCost + audioCost;
-                totalCostInput.value = totalCost;
+                totalCostInput.val(totalCost);
             }
             
             // Call calculateTotalCost function when the input values change
-            graphicInput.addEventListener('input', calculateTotalCost);
-            audioInput.addEventListener('input', calculateTotalCost);
+            graphicInput.on('input', calculateTotalCost);
+            audioInput.on('input', calculateTotalCost);
         });
     </script>
 </body>
